@@ -1,0 +1,10 @@
+FROM alpine:3.18.2
+
+RUN apk add --no-cache openconnect dnsmasq curl squid
+
+WORKDIR /vpn
+
+COPY . .
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["/vpn/entrypoint.sh"]

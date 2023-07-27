@@ -1,0 +1,34 @@
+version: "3.5"
+
+services:
+  vpn:
+    image: openconnect:vpn
+    env_file:
+      - .vpn-env
+    privileged: true
+    # restart: unless-stopped
+    ports:
+      - 3128:3128
+    volumes:
+      - ./certs:/vpn/certs:ro # mount certificates for entrypoint script
+      - cache:/tmp/cache:ro # needs to be in place in order to create the cache volume
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pgrep openconnect || exit 1; curl --fail http://www.google.com || exit 1",
+        ]
+      interval: 4s
+      timeout: 4s
+      retries: 4
+      start_period: 12s
+    networks:
+      - vpn
+
+networks:
+  vpn:
+    name: vpn_proxy
+
+volumes:
+  cache:
+    name: package_manager_cache

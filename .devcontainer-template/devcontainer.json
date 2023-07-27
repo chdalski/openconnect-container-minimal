@@ -1,0 +1,19 @@
+{
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // ..
+                "EditorConfig.EditorConfig"
+            ],
+            "settings": {
+                // if you want to use the devcontainers git configuration instead of the host's
+                // "dev.containers.copyGitConfig": false,
+                // if you want to use the devcontainers git credentials instead of the host's
+                // "dev.containers.gitCredentialHelperConfigLocation": "none",
+            }
+        }
+    }
+}

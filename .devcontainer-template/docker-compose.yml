@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  devcontainer:
+    image: debian:bookworm
+    dns:
+      - vpn:53
+      - 1.1.1.1 # for vscode to find schemas etc.
+    environment:
+      - ALL_PROXY=vpn:3128
+      - HTTP_PROXY=vpn:3128 # for vscode
+      - HTTPS_PROXY=vpn:3128 # for vscode
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached # for vscode
+      - /var/run/docker.sock:/var/run/docker.sock # for docker in docker
+    networks:
+      - vpn
+
+# use external network from vpn container
+networks:
+  vpn:
+    name: vpn_proxy
+    external: true
+# use external volume for i. e. caching
+# volumes:
+#   cache:
+#     name: package_manager_cache
+#     external: true
