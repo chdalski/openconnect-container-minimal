@@ -1,7 +1,7 @@
-PROTOCOL=anyconnect
-SERVER=
-SERVER_CA_FILE=/vpn/certs/company.cer
-USER=
-USER_CERT=/vpn/certs/user.pem
-USER_KEY=/vpn/certs/user.key
-PASS=
+VPN_PROTOCOL=anyconnect
+VPN_SERVER=
+VPN_SERVER_CA_FILE=/vpn/certs/company.cer
+VPN_USER=
+VPN_USER_CERT=/vpn/certs/user.pem
+VPN_USER_KEY=/vpn/certs/user.key
+VPN_PASS=

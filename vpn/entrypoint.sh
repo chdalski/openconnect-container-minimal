@@ -11,26 +11,26 @@ verify_required_parameter_is_set() {
 }
 
 # Test for presence of required vars
-verify_required_parameter_is_set PROTOCOL "${PROTOCOL}"
-OPENCONNECT_ARGS="--protocol ${PROTOCOL}"
+verify_required_parameter_is_set VPN_PROTOCOL "${VPN_PROTOCOL}"
+OPENCONNECT_ARGS="--protocol ${VPN_PROTOCOL}"
 
-verify_required_parameter_is_set SERVER "${SERVER}"
-OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --server ${SERVER}"
+verify_required_parameter_is_set VPN_SERVER "${VPN_SERVER}"
+OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --server ${VPN_SERVER}"
 
-verify_required_parameter_is_set SERVER_CA_FILE "${SERVER_CA_FILE}"
-OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --cafile ${SERVER_CA_FILE}"
+verify_required_parameter_is_set VPN_SERVER_CA_FILE "${VPN_SERVER_CA_FILE}"
+OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --cafile ${VPN_SERVER_CA_FILE}"
 
-verify_required_parameter_is_set USER "${USER}"
-OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --user ${USER}"
+verify_required_parameter_is_set VPN_USER "${VPN_USER}"
+OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --user ${VPN_USER}"
 
-verify_required_parameter_is_set USER_CERT "${USER_CERT}"
-OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --certificate ${USER_CERT}"
+verify_required_parameter_is_set VPN_USER_CERT "${VPN_USER_CERT}"
+OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --certificate ${VPN_USER_CERT}"
 
-verify_required_parameter_is_set USER_KEY "${USER_KEY}"
-OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --sslkey ${USER_KEY}"
+verify_required_parameter_is_set VPN_USER_KEY "${VPN_USER_KEY}"
+OPENCONNECT_ARGS="${OPENCONNECT_ARGS} --sslkey ${VPN_USER_KEY}"
 
-if [ -z "${PASS}" ]; then
-  printf "\e[31m\$PASS is not set\e[0m\n"
+if [ -z "${VPN_PASS}" ]; then
+  printf "\e[31m\$VPN_PASS is not set\e[0m\n"
   exit 1
 fi
 printf "\e[32mPassword:\e[0m [REDACTED]\n\n"
@@ -42,7 +42,7 @@ printf "\e[32mStarting OpenConnect VPN...\e[0m\n"
 printf "\e[33mArguments:\e[0m %s\n\n" "${OPENCONNECT_ARGS}"
 
 # run open connect
-(echo "${PASS}") | (eval "${OPENCONNECT_CMD}")
+(echo "${VPN_PASS}") | (eval "${OPENCONNECT_CMD}")
 
 # run dnsmasq
 sleep 2
