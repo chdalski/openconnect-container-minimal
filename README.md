@@ -13,7 +13,9 @@ Derived from: https://github.com/aw1cks/openconnect
 docker compose up -d
 ```
 
-## Devcontainer
+## Using the Proxy with Devcontainer
+
+Start by using the [devcontainer template](.devcontainer-template) as follows:
 
 - create a directory for the repository on your host
 - copy the `.devcontainer-template` into the repository directory as `.devcontainer`
@@ -26,6 +28,11 @@ docker compose up -d
     rm -rf my-actual-repo
     ```
   - add `.devcontainer/` to your `.gitignore file`
+
+## Using the Proxy locally
+
+The Proxy is forwarded locally on port `3128` and currently configured to allow http and https connections (see [squid.conf](vpn/squid.conf)).
+Use [Foxy Proxy](https://getfoxyproxy.org/help/browsers/) or similar tools in your browser to access it.
 
 ## TODO
 
